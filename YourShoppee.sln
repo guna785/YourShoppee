@@ -5,9 +5,14 @@ VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YourShoppee", "YourShoppee\YourShoppee.csproj", "{33471517-F927-4F03-B755-406EFD7128CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YourShoppee.Models", "YourShoppee.Models\YourShoppee.Models.csproj", "{18DBD9E2-6207-458A-833C-AC5FB6EB808F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YourShoppee.Models", "YourShoppee.Models\YourShoppee.Models.csproj", "{18DBD9E2-6207-458A-833C-AC5FB6EB808F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YourShoppee.MvcWeb", "YourShoppee.MvcWeb\YourShoppee.MvcWeb.csproj", "{369BEC1F-0370-40EC-8CE8-0B79DFDA13E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YourShoppee.MvcWeb", "YourShoppee.MvcWeb\YourShoppee.MvcWeb.csproj", "{369BEC1F-0370-40EC-8CE8-0B79DFDA13E4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C3234C3C-45B3-484F-9360-E7AC6342A7E3}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
