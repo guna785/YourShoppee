@@ -3,7 +3,7 @@
 </template>
 <script lang="ts">
     import { Vue } from 'vue-class-component';
-    import 'bootstrap/scss/bootstrap.scss';
+    
     export default class App extends Vue {
 
     }

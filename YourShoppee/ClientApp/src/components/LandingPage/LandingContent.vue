@@ -17,7 +17,7 @@
                             <div class="caption">
                                 <div class="blur"></div>
                                 <div class="caption-text">
-                                    <a class="com1" href="veg/home.html"><h1>Shop Now</h1></a>
+                                    <router-link to="/Products" style="text-decoration: none;"><div class="com1"><h1>Shop Now</h1></div></router-link>
                                 </div>
                             </div>
                         </li>
@@ -29,7 +29,7 @@
                             <div class="caption">
                                 <div class="blur"></div>
                                 <div class="caption-text">
-                                    <a class="com1" href="dress/home.html"><h1>Shop Now</h1></a>
+                                    <router-link to="/Products" style="text-decoration: none;"><div class="com1"><h1>Shop Now</h1></div></router-link>
                                 </div>
                             </div>
                         </li>
@@ -41,7 +41,7 @@
                             <div class="caption">
                                 <div class="blur"></div>
                                 <div class="caption-text">
-                                    <a class="com1" href="natural/home.html"><h1>Shop Now</h1></a>
+                                    <router-link to="/Products" style="text-decoration: none;"><div class="com1"><h1>Shop Now</h1></div></router-link>
                                 </div>
                             </div>
                         </li>
