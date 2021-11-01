@@ -1,7 +1,11 @@
-﻿<script>
+﻿<script lang="ts">
     import { Vue } from 'vue-class-component';
+    import {useStore} from 'vuex';
     export default class LandingNav extends Vue {
-
+        store:any=useStore();
+        get isAuthenticated(){
+            return !this.store.state.authenticated;
+        }
     }
 </script>
 <template>
@@ -10,10 +14,11 @@
             <strong>&laquo; Menu: </strong>Home
         </a>
         <span class="right">
-            <a href="#">LogIn / Sign Up</a>
-            <a href="#">
+             <router-link v-if="isAuthenticated" to="/Login">Sign In / Sign Up</router-link>
+             
+           <router-link to="/">
                 <strong>About Us</strong>
-            </a>
+           </router-link>
         </span>
         <div class="clr"></div>
     </header>

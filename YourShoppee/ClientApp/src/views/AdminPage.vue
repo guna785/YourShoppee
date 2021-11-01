@@ -1,7 +1,8 @@
 ﻿<script lang="ts">
     import {Options, Vue } from 'vue-class-component';
     import AdminNav from '@/components/Admin/AdminNav.vue';
-import Dashboard from '@/components/Admin/Dashboard.vue';
+    import Dashboard from '@/components/Admin/Dashboard.vue';
+    import {useStore} from 'vuex';
     @Options({
         components:{
             AdminNav,
@@ -9,7 +10,16 @@ import Dashboard from '@/components/Admin/Dashboard.vue';
         }
     })
     export default class AdminPage extends Vue {
-
+        store:any=useStore();
+        get isAuthenticated(){
+            return this.store.state.authenticated;
+        }
+        mounted(){
+            if(!this.isAuthenticated){
+                localStorage.clear();
+                this.$router.push('/');
+            }          
+        }
     }
 </script>
 <template>

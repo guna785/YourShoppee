@@ -1,13 +1,16 @@
 <script lang="ts">
 import {Vue} from 'vue-class-component';
-
+import {useStore} from 'vuex';
 export default class Login extends Vue {
+  store:any = useStore();
    LoginView:any={
        userName:"",
        password:"",
        rememberMe:"no"
    };
    submit=async ()=> {
+     
+       this.store.dispatch("setauth",true);
        alert("clicked");
    }
 }
