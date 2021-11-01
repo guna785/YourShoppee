@@ -13,6 +13,7 @@ namespace YourShoppee.Models.Models
     {
         public string Name { get; set; }
         public Gender gender { get; set; }
+        public UserType userType { get; set; }
         public DateTime createdAt { get; set; }
     }
 }

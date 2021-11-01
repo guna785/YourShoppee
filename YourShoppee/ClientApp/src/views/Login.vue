@@ -5,13 +5,16 @@ export default class Login extends Vue {
    LoginView:any={
        userName:"",
        password:"",
-       rememberMe:"yes"
+       rememberMe:"no"
+   };
+   submit=async ()=> {
+       alert("clicked");
    }
 }
 </script>
 <template>
-    <main class="form-signin">
-  <form>
+    <div class="form-signin">
+  <form @submit.prevent="submit">
     <img class="mb-4" src="../assets/logo.png" alt="" width="72" height="57">
     <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
@@ -26,18 +29,24 @@ export default class Login extends Vue {
 
     <div class="checkbox mb-3">
       <label>
-        <input type="checkbox" v-model="LoginView.rememberMe" true-value="yes" false-value="no"  required value="remember-me"> Remember me
+        <input type="checkbox" v-model="LoginView.rememberMe" true-value="yes" false-value="no"   value="remember-me"> Remember me
       </label>
     </div>
     <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
     <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
   </form>
-</main>
+</div>
 </template>
 <style>
    
 
-   
+    .form-signin {
+        width: 100%;
+        max-width: 330px;
+        padding: 15px;
+        margin-left: auto;
+        margin-right: auto;
+    }
 
         .form-signin .checkbox {
             font-weight: 400;

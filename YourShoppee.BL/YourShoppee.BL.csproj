@@ -5,13 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\YourShoppee.DAL\YourShoppee.DAL.csproj" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Contract\" />
-    <Folder Include="Models\" />
-    <Folder Include="Service\" />
+    <ProjectReference Include="..\YourShoppee.DAL\YourShoppee.DAL.csproj" />
   </ItemGroup>
 
 </Project>
