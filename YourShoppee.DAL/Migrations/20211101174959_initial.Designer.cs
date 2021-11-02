@@ -9,8 +9,8 @@ using YourShoppee.DAL.Context;
 namespace YourShoppee.DAL.Migrations
 {
     [DbContext(typeof(IdentityContext))]
-    [Migration("20211031072027_Initial")]
-    partial class Initial
+    [Migration("20211101174959_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -212,6 +212,9 @@ namespace YourShoppee.DAL.Migrations
                         .HasColumnType("datetime");
 
                     b.Property<int>("gender")
+                        .HasColumnType("int");
+
+                    b.Property<int>("userType")
                         .HasColumnType("int");
 
                     b.HasKey("Id");

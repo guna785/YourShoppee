@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,7 +11,7 @@ namespace YourShoppee.Auth
 {
     public interface IAuthenticateApi
     {
-        Task<AuthenticatedModel> Authenticate(LoginModel model);
+        Task<AuthenticatedModel> Authenticate(LoginModel model,HttpContext httpContext );
         Task<string> ChangePassword(ResetPasswordViewModel change);
         Task<string> resetPassword(string email);
     }
@@ -24,8 +25,9 @@ namespace YourShoppee.Auth
             _generateJwtToken = generateJwtToken;
         }
 
-        public async Task<AuthenticatedModel> Authenticate(LoginModel model)
+        public async Task<AuthenticatedModel> Authenticate(LoginModel model, HttpContext httpContext)
         {
+            await _authenticate.Initialize(httpContext);
             var usr = await _authenticate.Auth(model);
             if (usr == null)
                 return null;

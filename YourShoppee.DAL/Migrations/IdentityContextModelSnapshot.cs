@@ -212,6 +212,9 @@ namespace YourShoppee.DAL.Migrations
                     b.Property<int>("gender")
                         .HasColumnType("int");
 
+                    b.Property<int>("userType")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedEmail")

@@ -17,7 +17,7 @@
         mounted(){
             if(!this.isAuthenticated){
                 localStorage.clear();
-                this.$router.push('/');
+                this.$router.push('/Login');
             }          
         }
     }

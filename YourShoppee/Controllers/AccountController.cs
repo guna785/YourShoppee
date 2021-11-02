@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -35,6 +36,7 @@ namespace YourShoppee.Controllers
             _tokenRefresh = tokenRefresh;
             _configuration = configuration;
             _userManager = userManager;
+
         }
         [HttpPost]
         [ActionName("Auth")]
@@ -47,7 +49,7 @@ namespace YourShoppee.Controllers
                     data = "Bad Request"
                 });
             }
-            var u = await _auth.Authenticate(usr);
+            var u = await _auth.Authenticate(usr,HttpContext);
             if (u != null)
             {
                 return Ok(new
@@ -62,6 +64,7 @@ namespace YourShoppee.Controllers
             });
 
         }
+        [Authorize]
         [HttpPost]
         [ActionName("RenewUser")]
         public async Task<IActionResult> RenewUser([FromBody] JwtToken jwtToken)

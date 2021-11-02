@@ -31,10 +31,7 @@ import AdminSideBar from './AdminSideBar.vue';
                                 <i class="bi bi-person-fill"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                <li><router-link class="dropdown-item" to="/Login">Log Out</router-link></li>
                             </ul>
                         </li>
 

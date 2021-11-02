@@ -9,8 +9,8 @@ using YourShoppee.DAL.Context;
 namespace YourShoppee.DAL.Migrations.ApplicationDb
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20211031072251_Initial")]
-    partial class Initial
+    [Migration("20211101175016_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -1,17 +1,35 @@
 <script lang="ts">
 import {Vue} from 'vue-class-component';
 import {useStore} from 'vuex';
+import DataService from '@/Services/DataService';
+import {useRouter} from 'vue-router';
 export default class Login extends Vue {
   store:any = useStore();
+  router:any=useRouter();
+  dataService:DataService=new DataService();
    LoginView:any={
-       userName:"",
+       uname:"",
        password:"",
-       rememberMe:"no"
+       RememberMe:false
    };
    submit=async ()=> {
-     
-       this.store.dispatch("setauth",true);
-       alert("clicked");
+       var res=await this.dataService.Authticate(this.LoginView);
+       console.log(res);
+       if(res.status==200){
+          localStorage.setItem("jwt",res.data.data.token.jwt);
+          localStorage.setItem("refreshToken",res.data.data.token.refreshToken);
+          localStorage.setItem("userName",res.data.data.uname);
+          localStorage.setItem("Name",res.data.data.name);
+          localStorage.setItem("role",res.data.data.role);    
+
+          this.store.dispatch("setAuth",true);
+          if(res.data.data.role==="Admin") {this.router.push("/Admin");}
+          else{ this.router.push("/");}
+       }
+       else{
+         alert("Failed");
+       }
+      
    }
 }
 </script>
@@ -22,7 +40,7 @@ export default class Login extends Vue {
     <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
     <div class="form-floating">
-      <input type="text" v-model="LoginView.userName" class="form-control" id="floatingInput" required placeholder="User Name">
+      <input type="text" v-model="LoginView.uname" class="form-control" id="floatingInput" required placeholder="User Name">
       <label for="floatingInput">User Name</label>
     </div>
     <div class="form-floating">
@@ -32,7 +50,7 @@ export default class Login extends Vue {
 
     <div class="checkbox mb-3">
       <label>
-        <input type="checkbox" v-model="LoginView.rememberMe" true-value="yes" false-value="no"   value="remember-me"> Remember me
+        <input type="checkbox" v-model="LoginView.RememberMe"   value="remember-me"> Remember me
       </label>
     </div>
     <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>

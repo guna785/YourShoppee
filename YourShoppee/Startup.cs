@@ -2,8 +2,11 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
@@ -33,6 +36,18 @@ namespace YourShoppee
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.TryAddSingleton<IActionContextAccessor, ActionContextAccessor>();
+            services.AddScoped<IUrlHelper>(x => {
+                var actionContext = x.GetRequiredService<IActionContextAccessor>().ActionContext;
+                var factory = x.GetRequiredService<IUrlHelperFactory>();
+                return factory.GetUrlHelper(actionContext);
+            });
+            services.AddAntiforgery(options =>
+            {
+                options.Cookie.Name = "X-CSRF-TOKEN-FileTracking";
+                options.HeaderName = "X-CSRF-TOKEN-FileTracking";
+                options.FormFieldName = "X-CSRF-TOKEN-Filetracking";
+            });
             services.AddBLService(Configuration);
             services.AddDbContextService(Configuration);
             services.AddScoped(typeof(IAuthenticateApi), typeof(AuthenticateApi));
@@ -41,7 +56,7 @@ namespace YourShoppee
             // configure strongly typed settings objects
             var appSettingsSection = Configuration.GetSection("AppSettings");
             services.Configure<Appsettings>(appSettingsSection);
-
+            services.AddCors();
             // configure jwt authentication
             var appSettings = appSettingsSection.Get<Appsettings>();
             var key = Encoding.ASCII.GetBytes(appSettings.Secret);
